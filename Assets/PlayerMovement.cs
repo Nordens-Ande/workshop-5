@@ -9,8 +9,11 @@ public class PlayerMovement : MonoBehaviour
     Transform characterTransform;
     Vector3 movementInput;
     Vector3 movementVector;
-    [SerializeField] float movementSpeed;
+    [SerializeField] float movementSpeed = 20;
+    [SerializeField] float jumpForce = 1200;
 
+    private float sprint = 1;
+    private bool grounded = true;
 
 
     void Start()
@@ -27,15 +30,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyMovement()
     {
-        characterRB.position += movementVector * movementSpeed * Time.deltaTime;
+        movementVector = transform.forward * movementInput.y + transform.right * movementInput.x;
+        characterTransform.position += movementVector * sprint * movementSpeed * Time.deltaTime;
+    }
+
+    private void OnJump(InputValue input)
+    {
+        if (!grounded) return;
+
+        characterRB.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode.Impulse);
+    }
+
+    private void OnSprint(InputValue input)
+    {
+        sprint = 2;
+    }
+
+    private void OnSprintStop(InputValue input)
+    {
+        sprint = 1;
     }
 
     private void OnMovement(InputValue input)
     {
         movementInput = input.Get<Vector2>();
+    }
 
-        Debug.Log(characterTransform.rotation.y);
-        movementVector.x = Mathf.Cos(characterTransform.rotation.y) * movementInput.x + Mathf.Sin(characterTransform.rotation.y) * movementInput.x;
-        movementVector.z = Mathf.Cos(characterTransform.rotation.y) * movementInput.y + Mathf.Sin(characterTransform.rotation.y) * movementInput.y;
+    private void OnCollisionEnter(Collision collision)
+    {
+        grounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        grounded = false;
     }
 }

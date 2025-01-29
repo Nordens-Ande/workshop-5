@@ -13,18 +13,24 @@ public class PlayerLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        rotation.x -= mouse.y;
+        rotation.y += mouse.x;
+
+        Transform cameraTransform = GetComponent<Transform>();
+
+        cameraTransform.rotation = Quaternion.Euler(rotation.x, rotation.y, 0);
     }
 
     private void OnLook(InputValue value)
     {
-        mouse = value.Get<Vector2>();
+        mouse = value.Get<Vector2>() * mouseSensitivity * Time.deltaTime;
+
+
     }
 }
