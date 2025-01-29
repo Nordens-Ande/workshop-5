@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private void ApplyMovement()
     {
         movementVector = transform.forward * movementInput.y + transform.right * movementInput.x;
+        movementVector.y = 0;
         characterTransform.position += movementVector * sprint * movementSpeed * Time.deltaTime;
     }
 
