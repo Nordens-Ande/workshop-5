@@ -54,7 +54,6 @@ public class PlayerInteract : MonoBehaviour
                     IInteractable interactableChild = child.gameObject.GetComponent<IInteractable>();
                     if (interactableChild != null)
                         interactableChild.Drop();
-                        
                 } 
             }
         }
