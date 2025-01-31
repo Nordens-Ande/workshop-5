@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody characterRB;
-    Transform characterTransform;
+    //Transform characterTransform;
     Vector3 movementInput;
     Vector3 movementVector;
-    [SerializeField] float movementSpeed = 20;
-    [SerializeField] float jumpForce = 1200;
+    [SerializeField] float movementSpeed;
+    [SerializeField] float jumpForce;
 
     private float sprint = 1;
     private bool grounded = true;
@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterRB = GetComponent<Rigidbody>();    
-        characterTransform = GetComponent<Transform>();
+        //characterTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -32,14 +32,14 @@ public class PlayerMovement : MonoBehaviour
     {
         movementVector = transform.forward * movementInput.y + transform.right * movementInput.x;
         movementVector.y = 0;
-        characterTransform.position += movementVector * sprint * movementSpeed * Time.deltaTime;
+        transform.position += movementVector * sprint * movementSpeed * Time.deltaTime;
     }
 
     private void OnJump(InputValue input)
     {
         if (!grounded) return;
 
-        characterRB.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode.Impulse);
+        characterRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 
     private void OnSprint(InputValue input)
