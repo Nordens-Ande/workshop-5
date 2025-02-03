@@ -67,15 +67,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PauseSettings",
-                    "type": "Button",
-                    "id": "6f3a607a-386c-4f46-9ccb-a2fd6189eb25",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -243,15 +234,32 @@
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UIActionMap",
+            "id": "e608c604-bf90-43c5-afab-40240be8b38f",
+            "actions": [
+                {
+                    "name": "PauseGame",
+                    "type": "Button",
+                    "id": "da94be82-3f2c-418e-afe3-11e75b79fb7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "0390fa89-a73b-460f-b888-1290bcac6bf3",
+                    "id": "fd5a90ac-d69d-494d-a49d-af50803a8dfe",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PauseSettings",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

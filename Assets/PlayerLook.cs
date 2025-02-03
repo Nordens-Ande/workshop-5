@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerLook : MonoBehaviour
 {
-    [SerializeField] int mouseSensitivity;
+    [SerializeField] public int mouseSensitivity;
     [SerializeField] GameObject camera;
     Vector2 rotation;
     Vector2 mouse;

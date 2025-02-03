@@ -17,12 +17,14 @@ public class UiManager : MonoBehaviour
 
     private void OnPauseSettings(ValueInput input)
     {
-        EnableGameObjects("Menus");
+        //EnableGameObjects("Menus");
+        EnableGameObjects("Background");
     }
 
     public void Resume()
     {
-        EnableGameObjects("Menus");
+        EnableGameObjects("Background");
+        //EnableGameObjects("Menus");
     }
 
     public void Options()
