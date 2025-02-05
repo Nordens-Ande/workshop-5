@@ -34,28 +34,37 @@ public class PlayerInteract : MonoBehaviour
     {
 
         RaycastHit hit;
+        GameObject hitObject;
+        IInteractable interactObject = null;
 
         Debug.DrawRay(cameraTransform.position, cameraTransform.forward * reach, Color.red);
 
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, reach))
         {
-            GameObject hitObject = hit.collider.gameObject;
-            IInteractable interactObject = hitObject.GetComponent<IInteractable>();
-
-            if (interactObject != null)
+            hitObject = hit.collider.gameObject;
+            interactObject = hitObject.GetComponent<IInteractable>();
+        }
+        if (interactObject != null)
+        {
+            interactObject.Interact();
+            interactObject.PickUp(transform);
+        }
+        else if (transform.childCount > 1)
+        {
+            foreach (Transform child in transform)
             {
-                interactObject.Interact();
-                interactObject.PickUp(transform);
-            }
-            else if (transform.childCount > 1)
-            {
-                foreach (Transform child in transform)
-                {
-                    IInteractable interactableChild = child.gameObject.GetComponent<IInteractable>();
-                    if (interactableChild != null)
-                        interactableChild.Drop();
-                } 
+                IInteractable interactableChild = child.gameObject.GetComponent<IInteractable>();
+                if (interactableChild != null)
+                    interactableChild.Drop();
             }
         }
+
+
+
+        //else
+        //{
+        //    interactObject.Interact();
+        //    interactObject.PickUp(transform);
+        //}
     }
 }

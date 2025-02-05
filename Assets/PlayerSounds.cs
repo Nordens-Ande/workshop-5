@@ -25,10 +25,12 @@ public class PlayerSounds : MonoBehaviour
     {
         audioSource.clip = SoundBank.Instance.stepSound;
         audioSource.loop = true;
+        audioSource.Play();
     }
 
     private void OnMovementStop(InputValue value)
     {
         audioSource.loop = false;
+        audioSource.clip = null;
     }
 }
