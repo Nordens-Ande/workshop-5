@@ -106,4 +106,13 @@ public class PauseMenu : MonoBehaviour
         ToggleGameObjects("Background", true);
         ToggleGameObjects(menuList.transform.Find("Menus").Find("GraphicsMenu"), true);
     }
+
+    public void AudioMenu()
+    {
+        ResetPauseUI();
+
+        ToggleGameObjects("Menus", true);
+        ToggleGameObjects("Background", true);
+        ToggleGameObjects(menuList.transform.Find("Menus").Find("AudioMenu"), true);
+    }
 }

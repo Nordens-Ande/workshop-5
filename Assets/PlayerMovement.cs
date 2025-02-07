@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnMovement(InputValue input)
     {
+        Debug.Log("Pressed WASD");
         movementInput = input.Get<Vector2>();
     }
 
